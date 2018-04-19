@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+  <% include ../partials/head %>
+  <script src = "scripts/homeScript.js"></script>
+</head>
+
+<body>
+
+  <!-- Gets the header file -->
+  <% include ../partials/header.ejs %>
+
+  <!-- Login section which stays hidden till in use -->
+  <% include ../partials/login.ejs %>
+
+  <!-- Signup section which stays hidden till in use -->
+  <% include ../partials/signup.ejs %>
+
+  <!-- The Main Content section -->
+  <section id = "MainContent">
+
+    <div id = "userInfo">
+      <a href = "#">Signed in as: <p id = "username"><b><%= user.username %></b></p></a>
+    </div>
+
+    <div id = "descriptionText">
+
+      <div id = "collapseDescription">
+        <input id = "toggle" class = "test collapseInfo" type = "checkbox">
+        <label id = "descriptionTitle" class = "collapseLabel" for = "toggle">What Our App Does!</label>
+
+        <div class = "expand">
+          <p>Think Tinder but for finding restaurants! Simply input the town/city in which
+              you wish to find a restaurant and the radial distance you want to search within.
+              Then we will find a selection of restaurants in that area for you to look
+              through! Create an account with us and you can save the restaurant to find
+              later in the "My Restaurants" section!
+          </p>
+        </div>
+      </div>
+
+      <div id = "fullDescription">
+        <h2 class = "paraTitle">What our app does!</h2>
+
+        <p>Think Tinder but for finding restaurants! Simply input the town/city in which
+            you wish to find a restaurant and the radial distance you want to search within.
+            Then we will find a selection of restaurants in that area for you to look
+            through! Create an account with us and you can save the restaurant to find
+            later in the "My Restaurants" section!
+        </p>
+      </div>
+
+      <h3 class = "paraTitle">Enter the location you wish to seach in!</h3>
+
+    </div>
+
+    <form id = "searchForm">
+      <input type = "text" id = "location" class = "searchBox" placeholder = "Location(e.g. 'Aberdeen, Scotland')">
+      <input type = "text" id = "distance" class = "searchBox" placeholder = "Distance(Miles)">
+      <button type = "submit" id = "search">Go!</button>
+    </form>
+
+    <div id = "activeCard" class = "card">
+      <h2 id = "rName" class = "paraTitle">Restaurant Name</h2>
+      <div class = "imageContainer">
+        <img id = "rImage" src = "images/foodImage3.jpeg" class = "cardImage" alt = "Restaurant Image">
+        <img src = "images/foodImage4.jpeg" class = "cardImage" alt = "Restaurant Image">
+        <img src = "images/foodImage5.jpeg" class = "cardImage" alt = "Restaurant Image">
+
+        <button id = "leftButton" class = "btn" onclick = "plusDivs(-1)">&#10094;</button>
+        <button id = "rightButton" class = "btn" onclick = "plusDivs(1)">&#10095;</button>
+      </div>
+
+      <span class="starText"><b>Star Rating:</b> </span>
+      <span class="fa fa-star starChecked"></span>
+      <span class="fa fa-star starChecked"></span>
+      <span class="fa fa-star starChecked"></span>
+      <span class="fa fa-star starChecked"></span>
+      <span class="fa fa-star"></span>
+      <p id = "rText"><b>User Rating:</b> 4.1 average based on 254 reviews.
+        <br><b>Cuisine/s:</b> Pub Grub
+        <br><b>Average Cost:</b>
+        <span class="fa fa-dollar dollarOn"></span>
+        <span class="fa fa-dollar dollarOn"></span>
+        <span class="fa fa-dollar dollarOff"></span>
+        <span class="fa fa-dollar dollarOff"></span>
+      </p>
+
+      <input id = "seeMore" class = "collapseInfo" type = "checkbox">
+      <label class = "collapseLabel" for = "seeMore">See more...</label>
+
+      <div class = "expand">
+        <p><b>Site Url: </b></p>
+        <h3>Location Information</h3>
+        <div id = "map"></div>
+      </div>
+
+      <form id = "scrollForm">
+        <button id = "dislikeButton" class = "button" type = "button"></button>
+        <button id = "likeButton" class = "button" type = "button" onclick = "saveCard()"></button>
+      </form>
+  </div>
+  </section>
+
+  <!-- The Page Footer area -->
+  <footer id = "PageFooter">
+    <% include ../partials/footer %>
+  </footer>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBPO_ZRe5JJellJY06o4c2yrGL55loC0w&callback=createMap"></script>
+</body>
+</html>

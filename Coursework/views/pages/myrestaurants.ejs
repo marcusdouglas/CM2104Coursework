@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+  <% include ../partials/head %>
+
+  <script src = "scripts/myRestaurantsScript.js"></script>
+  <link rel = "stylesheet" type = "text/css" href = "style/myrestaurants.css">
+</head>
+
+<body>
+
+  <!-- Gets the header file -->
+  <% include ../partials/header.ejs %>
+
+  <!-- Login section which stays hidden till in use -->
+  <% include ../partials/login.ejs %>
+
+  <!-- Signup section which stays hidden till in use -->
+  <% include ../partials/signup.ejs %>
+
+  <!-- The Main Content section -->
+  <section id = "MainContent">
+
+    <div id = "userInfo">
+      <a href = "#">Signed in as: <p id = "username"><b><%= user.username %></b></p></a>
+    </div>
+
+    <div id = "myRestaurantsContainer">
+
+      <div id = "pageTitle">
+        <h1 id = "heading" class = "paraTitle">My Restaurants</h1>
+      </div>
+
+        <% restaurants.forEach(function(restaurant) { %>
+          <div id = "<%= restaurant.name %>" class = "savedRestaurant">
+            <span class = "close" onclick = "removeSavedRestaurant()">&times;</span>
+            <div class = "sideImgContainer">
+              <img class = "sideImg" src = "<%= restaurant.imageUrl %>">
+            </div>
+
+            <div class = "textContainer">
+              <h2 class = "paraTitle"><%= restaurant.name %></h2>
+              <p class = "info"><%= restaurant.text %></p>
+            </div>
+          </div>
+        <% }); %>
+
+      <div class = "savedRestaurant">
+
+        <span class = "close" onclick = "removeSavedRestaurant()">&times;</span>
+
+        <div class = "sideImgContainer">
+          <img class = "sideImg" src = "images/foodImage3.jpeg">
+        </div>
+
+        <div class = "textContainer">
+          <h2 class = "paraTitle">Restaurant Name</h2>
+          <p class = "info">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+      </div>
+
+      <div class = "savedRestaurant">
+
+        <span class = "close" onclick = "removeSavedRestaurant()">&times;</span>
+
+        <div class = "sideImgContainer">
+          <img class = "sideImg" src = "images/foodImage4.jpeg">
+        </div>
+
+        <div class = "textContainer">
+          <h2 class = "paraTitle">Restaurant Name</h2>
+          <p class = "info">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+      </div>
+
+      <div class = "savedRestaurant">
+
+        <span class = "close" onclick = "removeSavedRestaurant()">&times;</span>
+
+        <div class = "sideImgContainer">
+          <img class = "sideImg" src = "images/foodImage5.jpeg">
+        </div>
+
+        <div class = "textContainer">
+          <h2 class = "paraTitle">Restaurant Name</h2>
+          <p class = "info">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- The Page Footer area -->
+  <footer id = "PageFooter">
+    <% include ../partials/footer %>
+  </footer>
+
+</body>
+</html>

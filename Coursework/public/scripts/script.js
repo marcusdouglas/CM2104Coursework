@@ -78,7 +78,72 @@ function responsiveNav() {
   }
 }
 
+// Will make the login form visible
+function displayLogin() {
+  $("#loginForm").css({display: "block"});
+}
+
+// Will make the signup form visible
+function displaySignup() {
+  $("#loginForm").css({display: "none"});
+  $("#signupForm").css({display: "block"});
+}
+
 // Will remove login form elements visibility
 function loginDisplayNone() {
   $("#loginForm").css({display: "none"});
+}
+
+// Will remove signup form elements visibility
+function signupDisplayNone() {
+  $("#signupForm").css({display: "none"});
+}
+
+// ----------------- Code to handle sign ups -------------------
+
+// Check signup passwords match
+$(document).ready(function () {
+   $("#password, #repeatPassword").keyup(checkPasswordMatch);
+});
+
+// function to check signup passwords match
+function checkPasswordMatch() {
+  var password = $("#password").val();
+  var confirmPassword = $("#repeatPassword").val();
+
+  if (password != confirmPassword) {
+    $("#checkPasswordMatch").html("<p style = 'color: red'>Password Status: Passwords do not match!</p>");
+    $("#confirmSignup").prop('disabled', true);
+    return false;
+  }
+  else {
+    $("#checkPasswordMatch").html("<p style = 'color: green'>Password Status: Passwords match.</p>");
+    $("#confirmSignup").prop('disabled', false);
+    return true;
+  }
+}
+
+function createUser() {
+
+  if (!checkPasswordMatch()) {
+    console.log("fail");
+  } else {
+    console.log("success");
+
+    var placeCard = {name: "Name", image: "images/foodImage6.jpeg", text: "Some text"};
+    var username = $("#uname").val();
+    var password = $("#repeatPassword").val();
+    var saved_cards = [placeCard];
+    //console.log(username);
+
+    $.ajax({
+         method: "POST",
+         url: "/adduser",
+         data: {"username": username, "password": password, "saved_cards": saved_cards},
+         success: function(result) {
+           console.log(result);
+         }
+      });
+  }
+
 }
