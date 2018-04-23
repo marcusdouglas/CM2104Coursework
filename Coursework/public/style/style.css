@@ -24,6 +24,13 @@
     width: 20%;
   }
 
+  #userInfo a {
+      left: -210px;
+      width: 220px;
+      font-size: 18px;
+      top: 200px;
+  }
+
   .cardImage {
     max-width: 300px;
     margin-left: auto;
@@ -71,6 +78,13 @@
 
   #search {
     width: 20%;
+  }
+
+  #userInfo a {
+      left: -210px;
+      width: 220px;
+      font-size: 18px;
+      top: 200px;
   }
 
   .card {
@@ -177,6 +191,13 @@
       padding-top: 0;
     }
 
+    #userInfo a{
+        left: -176px;
+        width: 180px;
+        font-size: 16px;
+        top: 90px;
+    }
+
     #headerImage {
       display: none;
     }
@@ -198,6 +219,9 @@
     }
 
     .cardImage {
+      max-width: 200px;
+      margin-left: auto;
+      margin-right: auto;
       max-height: 200px;
       min-height: 200px;
     }
@@ -225,6 +249,13 @@
 @media only screen and (max-width: 500px) {
   .card {
     width: 85%;
+  }
+
+  #userInfo a{
+      left: -175px;
+      width: 170px;
+      font-size: 14px;
+      top: 90px;
   }
 }
 
@@ -298,15 +329,15 @@ body {
 
 #userInfo a{
     position: absolute;
-    left: -80px;
+    /*left: -80px;*/
     transition: 0.3s;
     padding: 15px;
-    width: 100px;
+    /*width: 100px;*/
     text-decoration: none;
-    font-size: 20px;
+    /*font-size: 20px;*/
     color: black;
     border-radius: 0 5px 5px 0;
-    top: 200px;
+    /*top: 200px;*/
     background-color: white;
 }
 
@@ -314,16 +345,16 @@ body {
     left: 0;
 }
 
-/*
-#userWelcome {
-  background: white;
-  padding: 12px;
-  width: 20%;
+#arrow {
   float: right;
-  display: block;
-  text-align: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}*/
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}
+
+#username {
+  display: inline;
+}
 
 .collapseInfo {
   display: none;
@@ -429,6 +460,12 @@ body {
   transition: 0.3s;
 }
 
+#placeImage {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .card {
   background-color: white;
   border-radius: 6px;
@@ -451,7 +488,7 @@ body {
 
 .imageContainer .btn {
   position: relative;
-  background-color: black;
+  background-color: #181818;
   color: white;
   font-size: 16px;
   padding: 8px 14px;
@@ -491,6 +528,20 @@ body {
 
 .dollarOff {
   color: lightBlue;
+}
+
+.cardText {
+  margin: 0;
+  padding-top: 4px;
+}
+
+#rating {
+  padding-top: 8px;
+}
+
+#cost {
+  display: inline-block;
+  padding-right: 8px;
 }
 
 #seeMore:checked ~ .expand {
@@ -848,4 +899,30 @@ span.psw {
     .signupCancelBtn, .signupButton {
        width: 100%;
     }
+}
+
+/* ------------------Css for the loader ------------------*/
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

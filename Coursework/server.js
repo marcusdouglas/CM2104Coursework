@@ -65,7 +65,9 @@ app.get("/", function(req, res) {
     var result = {username: "No User"}
 
     res.render('pages/index', {
-      user: result
+      user: result,
+      page: "index",
+      logged: "Login or Signup"
     });
     return;
   } else {
@@ -77,7 +79,9 @@ app.get("/", function(req, res) {
     db.collection('users').findOne({"username":uname}, function(err, result) {
      if (err) throw err;
      res.render('pages/index', {
-       user: result
+       user: result,
+       page: "index",
+       logged: "Logout"
      });
    });
   }
@@ -103,14 +107,20 @@ app.get("/myrestaurants", function(req, res) {
       for (var i = 0; i < saved_cards.length; i++) {
         var name = saved_cards[i].name;
         var imageUrl = saved_cards[i].image;
-        var text = saved_cards[i].text;
+        var rating = saved_cards[i].rating;
+        var cuisines = saved_cards[i].cuisines;
+        var cost = saved_cards[i].cost;
+        var averageCost = saved_cards[i].averageCost;
 
-        var restaurant = {name: name, imageUrl: imageUrl, text: text};
+        var restaurant = {name: name, imageUrl: imageUrl, rating: rating,
+          cuisines: cuisines, cost: cost, averageCost: averageCost};
         restaurants[i] = restaurant;
       }
       res.render("pages/myrestaurants", {
         user: result,
-        restaurants: restaurants
+        restaurants: restaurants,
+        page: "myrestaurants",
+        logged: "Logout"
       });
     });
   }
@@ -125,7 +135,9 @@ app.post('/card', function (req, res) {
     var result = {username: "No User"}
 
     res.render('pages/index', {
-      user: result
+      user: result,
+      page: "index",
+      logged: "Login or Signup"
     });
     return;
   } else {
@@ -140,8 +152,12 @@ app.post('/card', function (req, res) {
 
      var name = req.body.card.name;
      var image = req.body.card.image;
-     var text = req.body.card.text;
-     var newCard = {name: name, image: image, text: text};
+     var rating = req.body.card.rating;
+     var cuisines = req.body.card.cuisines;
+     var cost = req.body.card.cost;
+     var averageCost = req.body.card.averageCost;
+     var newCard = {name: name, image: image, rating: rating, cuisines: cuisines,
+      cost: cost, averageCost: averageCost};
 
      var saved_cards = result.saved_cards;
     // console.log(saved_cards);
@@ -228,7 +244,9 @@ app.post('/login', function(req, res) {
       db.collection('users').findOne({"username":uname}, function(err, result) {
        if (err) throw err;
        res.render('pages/index', {
-         user: result
+         user: result,
+         page: "index",
+         logged: "Logout"
        });
      });
      req.session.loggedin = true;
@@ -250,40 +268,64 @@ app.post('/adduser', function(req, res) {
   console.log(JSON.stringify(req.body));
   var uname = req.body.uname;
 
+  // Some descriptive text loaded in the rating part of EJS for place holding
+  var pageDescription = "On this page you can find all the restaurants that"
+    + " you have saved and all their details. To remove a restaurant from this"
+    + " page, click the cross at the top right of the restaurants card. You may"
+    + " feel free to delete this information card!";
+
+  var placeCard = {name: "Welcome to the My Restaurants page!", image: "images/logo.png", rating: pageDescription};
+  var password = req.body.psw;
+  var saved_cards = [placeCard];
+
+  var newUser = {username: uname, password: password, saved_cards: saved_cards};
+
+  db.collection('users').save(newUser, function(err, result) {
+    if (err) throw err;
+    //console.log(result);
+    console.log('saved to database');
+
+    db.collection('users').findOne({"username":uname}, function(err, result) {
+     if (err) throw err;
+      //console.log(result);
+      res.render('pages/index', {
+        user: result,
+        page: "index",
+        logged: "Logout"
+      });
+    });
+    req.session.loggedin = true;
+    console.log("logged in as " + uname);
+
+  });
+});
+
+/*
+// Creates a new user
+app.post('/adduser', function(req, res) {
+  console.log(JSON.stringify(req.body));
+  var uname = req.body.uname;
+
   db.collection('users').save(req.body, function(err, result) {
     if (err) throw err;
+    //console.log(result);
     console.log('saved to database');
 
     //when complete redirect to the index
     db.collection('users').findOne({"username":uname}, function(err, result) {
      if (err) throw err;
+     //console.log(result);
      res.render('pages/index', {
-       user: result
+       user: result,
+       page: "index",
+       logged: "Logout"
      });
    });
    req.session.loggedin = true;
    console.log("logged in as " + uname);
 
   });
-  /*
-  console.log(JSON.stringify(req.body));
-  console.log(req.body);
-  var uname = req.body.username;
-
-  //var array = req.body.saved_cards;
-  //console.log("Array" + array)
-  //once created we just run the data string against the database and all our new data will be saved/
-  db.collection('users').save(req.body, function(err, result) {
-    if (err) throw err;
-    console.log('saved to database');
-
-    //when complete redirect to the index
-    console.log(req.body);
-    req.session.loggedin = true;
-    res.redirect('/');
-    console.log("logged in as " + uname);
-  });*/
-});
+});*/
 
 // Logs the user out
 app.get('/logout', function(req, res) {
