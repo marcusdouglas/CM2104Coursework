@@ -1,9 +1,10 @@
 /* ------------------Desktop-------------------- */
 @media only screen and (min-width:1200px) {
   .textContainer {
-    width: 70%;
-    padding-right: 36px;
-    float: right;
+    /* width: 70% */
+    width: 500px;
+    padding-left: 12px;
+    /* float: right */
   }
 
   .savedRestaurant {
@@ -17,13 +18,23 @@
 
   #heading {
     font-size: 40px;
+  }
+
+  #myResPlaceImage {
+    width: 25%;
+  }
+
+  .myResPlaceText {
+    width: 70%;
   }
 }
 
 /* ------------------Screens < 1200px-------------------- */
 @media only screen and (max-width:1200px) {
   .textContainer {
-    width: 100%;
+    /* width: 100% */
+    width: 400px;
+    padding-left: 12px;
   }
 
   .savedRestaurant {
@@ -37,6 +48,37 @@
 
   #heading {
     font-size: 40px;
+  }
+
+  #myResPlaceImage {
+    width: 25%;
+  }
+
+  .myResPlaceText {
+    width: 70%;
+  }
+}
+
+/* ------------------Code applies to screens < 1000px */
+@media only screen and (max-width: 1000px) {
+  .textContainer {
+    /* width: 100% */
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .sideImgContainer {
+    margin-bottom: 12px;
+  }
+
+  #myResPlaceImage {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .myResPlaceText {
+    width: 70%;
   }
 }
 
@@ -49,6 +91,20 @@
   #heading {
     font-size: 30px;
   }
+
+  #myResPlaceImage {
+    width: 50%;
+  }
+
+  .myResPlaceText {
+    width: 80%;
+  }
+
+  #myResPlaceTitle {
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* ------------------Screens < 500px-------------------- */
@@ -60,6 +116,14 @@
   .sideImgContainer {
     width: 180px;
     height: 180px;
+  }
+
+  .cardTitle {
+    max-width: 200px;
+  }
+
+  .myResPlaceText {
+    width: 95%;
   }
 }
 
@@ -93,12 +157,23 @@
 
 .textContainer {
   display: inline-block;
+  /* no padding */
+}
+
+#myResPlaceImage {
+  border: 2px solid grey;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.myResPlaceText {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .info {
   padding: 0;
   clear: left;
-  text-align: justify;
 }
 
 .optionButton {
@@ -113,4 +188,29 @@
 
 .optionButton:hover {
   background-color: RoyalBlue;
+}
+
+#topButton {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  width: 50px;
+  text-align: center;
+  border: none;
+  outline: none;
+  background-color: #080808;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#topButton:hover {
+  background-color: white;
+  color: #080808;
+  transition: 0.3s;
 }

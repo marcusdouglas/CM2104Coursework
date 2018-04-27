@@ -1,10 +1,15 @@
+// Function to remove a saved restaurant
 function removeSavedRestaurant() {
 
   $("#MainContent").on("click", ".savedRestaurant", function() {
 
+    // The username of the user deleting a restaurant
     var uname = $("#username").text();
+
+    // The name of the restaurant being deleted
     var name = $(this).attr("id");
 
+    // Visually remove the selected card being deleted on the screen
     $(this).fadeOut(500, function() {
       $(this).remove();
     });
@@ -20,19 +25,23 @@ function removeSavedRestaurant() {
   });
 }
 
-function getAverage(averageCost) {
-  var restaurantAverageCost = "";
-  var poundCount = 0;
+// Calls the topScroll function on scroll
+$(document).ready(function () {
+  $(window).scroll(function () {
+    topScroll();
+  });
+});
 
-  for (var i = 0; i < averageCost; i++) {
-    restaurantAverageCost += "<span class='fa fa-dollar dollarOn'></span>";
-    poundCount++;
-  }
+// Displays or removes the scroll button
+function topScroll() {
+    if ($(window).scrollTop() > 400 || $(window).scrollTop() > 400) {
+        $("#topButton").css({display: "block"});
+    } else {
+        $("#topButton").css({display: "none"});
+    }
+}
 
-  for (var i = poundCount; i < 4; i++) {
-    restaurantAverageCost += "<span class='fa fa-dollar dollarOff'></span>";
-    poundCount++;
-  }
-
-  $(".costText").append(restaurantAverageCost);
+// When the user clicks on the top button, scroll to the top of the document
+function topFunction() {
+    $(window).scrollTop(0);
 }
